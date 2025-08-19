@@ -19,3 +19,24 @@ The repo is structured around **learning by doing**, including real problems we 
    ```bash
    sudo /opt/splunk/bin/splunk enable listen 9997
    sudo /opt/splunk/bin/splunk restart
+
+
+### On Forwarder (Splunk UF)
+sudo /opt/splunkforwarder/bin/splunk add forward-server 127.0.0.1:9997
+sudo /opt/splunkforwarder/bin/splunk add monitor /var/log/syslog
+sudo /opt/splunkforwarder/bin/splunk add monitor /var/log/auth.log
+sudo /opt/splunkforwarder/bin/splunk restart
+
+### Verify
+
+Splunk Web → http://localhost:8000
+
+CLI:
+
+/opt/splunkforwarder/bin/splunk list forward-server
+/opt/splunkforwarder/bin/splunk list inputstatus
+
+### Why This Repo
+
+Linux setup is trickier than Windows (permissions, ports, configs).
+This repo keeps all the commands, configs, and troubleshooting notes in one place so the setup can be repeated quickly next time.f
